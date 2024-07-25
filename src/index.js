@@ -1,14 +1,21 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './styles/index.scss';
-import App from './app';
+const express= require('express');
+const app=express();
+require('dotenv');
+require('./db');
+
+const userRouter = require("./routers/users.router");
+const authRouter = require("./routers/auth.router");
+const notesRouter = require("./routers/notes.router");
+
+app.get('/',(req,res) => {
+    res.send('Hello CipherSchools!')
+});
+app.use('/api/notes',notesRouter);
+app.use('/api/auth',authRouter);
+app.use('/api/users',userRouter);
+const PORT=process.env.PORT || 8000;
 
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
-
-
+app.listen(PORT,()=> {
+    console.log("Server is running at 3001 port");
+});
