@@ -1,8 +1,8 @@
 const mongoose=require('mongoose');
 
-MONGODB_URI="mongodb+srv://srijanagautam595:Myfamily123@cluster0.wpzqucg.mongodb.net/"
 
-mongoose.connect(MONGODB_URI,{
+
+mongoose.connect(process.env.MONGODB_URI,{
     useNewUrlParser: true,
     useUnifiedTopology: true
 }).then(() => {
